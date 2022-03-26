@@ -1,11 +1,13 @@
 import OrderDetails from './OrderDetails';
-import HeaderComponent from './HeaderComponent';
+import Header from './Header';
+import DurationSelection from './DurationSelection';
 
 const ParkingUserLanding = () => {
     return (
         <div className="flex flex-col items-center">
-            <HeaderComponent />
-            <OrderDetails />
+            <Header />
+            <OrderDetails className="my-6" />
+            <DurationSelection />
         </div>
     );
 };
