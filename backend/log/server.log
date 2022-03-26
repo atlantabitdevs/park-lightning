@@ -399,3 +399,42 @@ info: Mar-26-2022 16:09:24: 	Connection to GCP Project park-lightning successful
 info: Mar-26-2022 16:09:24: 	Connected to collection park-lightning/parkLightning
 info: Mar-26-2022 16:09:24: 	API Server listening on http://127.0.0.1:8081
 info: Mar-26-2022 16:09:29: 	Reserve Spot Response: {"success":true,"message":{"_writeTime":{"_seconds":1648325369,"_nanoseconds":626157000}}}
+info: Mar-26-2022 16:14:29: 	Connection to GCP Project park-lightning successful!
+info: Mar-26-2022 16:14:29: 	Connected to collection park-lightning/parkLightning
+info: Mar-26-2022 16:14:29: 	API Server listening on http://127.0.0.1:8081
+info: Mar-26-2022 16:14:59: 	Connection to GCP Project park-lightning successful!
+info: Mar-26-2022 16:14:59: 	Connected to collection park-lightning/parkLightning
+info: Mar-26-2022 16:14:59: 	API Server listening on http://127.0.0.1:8081
+info: Mar-26-2022 16:15:04: 	Connection to GCP Project park-lightning successful!
+info: Mar-26-2022 16:15:04: 	Connected to collection park-lightning/parkLightning
+info: Mar-26-2022 16:15:04: 	API Server listening on http://127.0.0.1:8081
+info: Mar-26-2022 16:17:01: 	Connection to GCP Project park-lightning successful!
+info: Mar-26-2022 16:17:01: 	Connected to collection park-lightning/parkLightning
+info: Mar-26-2022 16:17:01: 	API Server listening on http://127.0.0.1:8081
+info: Mar-26-2022 16:17:40: 	Connection to GCP Project park-lightning successful!
+info: Mar-26-2022 16:17:40: 	Connected to collection park-lightning/parkLightning
+info: Mar-26-2022 16:17:40: 	API Server listening on http://127.0.0.1:8081
+info: Mar-26-2022 16:17:48: 	Connection to GCP Project park-lightning successful!
+info: Mar-26-2022 16:17:48: 	Connected to collection park-lightning/parkLightning
+info: Mar-26-2022 16:17:48: 	API Server listening on http://127.0.0.1:8081
+info: Mar-26-2022 16:17:53: 	Connection to GCP Project park-lightning successful!
+info: Mar-26-2022 16:17:53: 	Connected to collection park-lightning/parkLightning
+info: Mar-26-2022 16:17:53: 	API Server listening on http://127.0.0.1:8081
+info: Mar-26-2022 16:18:02: 	Connection to GCP Project park-lightning successful!
+info: Mar-26-2022 16:18:02: 	Connected to collection park-lightning/parkLightning
+info: Mar-26-2022 16:18:02: 	API Server listening on http://127.0.0.1:8081
+info: Mar-26-2022 16:18:11: 	Connection to GCP Project park-lightning successful!
+info: Mar-26-2022 16:18:11: 	Connected to collection park-lightning/parkLightning
+info: Mar-26-2022 16:18:11: 	API Server listening on http://127.0.0.1:8081
+info: Mar-26-2022 16:18:30: 	Connection to GCP Project park-lightning successful!
+info: Mar-26-2022 16:18:30: 	Connected to collection park-lightning/parkLightning
+info: Mar-26-2022 16:18:30: 	API Server listening on http://127.0.0.1:8081
+info: Mar-26-2022 16:18:32: 	Connection to GCP Project park-lightning successful!
+info: Mar-26-2022 16:18:32: 	Connected to collection park-lightning/parkLightning
+info: Mar-26-2022 16:18:32: 	API Server listening on http://127.0.0.1:8081
+info: Mar-26-2022 16:18:36: 	Connection to GCP Project park-lightning successful!
+info: Mar-26-2022 16:18:36: 	Connected to collection park-lightning/parkLightning
+info: Mar-26-2022 16:18:36: 	API Server listening on http://127.0.0.1:8081
+info: Mar-26-2022 16:18:37: 	Connection to GCP Project park-lightning successful!
+info: Mar-26-2022 16:18:37: 	Connected to collection park-lightning/parkLightning
+info: Mar-26-2022 16:18:37: 	API Server listening on http://127.0.0.1:8081

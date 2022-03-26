@@ -1,0 +1,37 @@
+API Routes
+User Side:
+
+spot
+	- GET: spot/details
+		- URL: https://api.parklightning.com/api/v1/spot/details?uuid=d8d05dce-dbae-421b-9bdd-ea3ce75b7a77
+  - Body: none
+		- Returns: { success: true, message: { 
+                                          address: 691 John Wesley Dobbs Ave, Atlanta, GA 30312,
+                                          expirationTime: 1648319420,
+                                          startTime: 1648317620,
+                                          expired: false,
+                                          licensePlate: SC39133,
+                                          occupied: true,
+                                          duration: 1800
+                                       }
+             }
+- POST: spot/reserve
+		- URL: https://api.parklightning.com/api/v1/spot/reserve
+  - Body: { uuid: da1c0d1b-1ecf-4fe0-9acd-dc3d49640f8f, licensePlate: BOE8359, duration: 1800 }
+		- Returns: { success: true,message: { _writeTime: { _seconds: 1648324950, _nanoseconds: 756013000 } } }
+
+invoice
+- POST: invoice/create
+  - URL: https://api.parklightning.com/api/v1/spot/details?uuid=d8d05dce-dbae-421b-9bdd-ea3ce75b7a77
+  - Body: { amount: $5.00, memo: { license plate: BOE8359, uuid: da1c0d1b-1ecf-4fe0-9acd-dc3d49640f8f, duration: 1800 } }
+		- Returns: { success: true, message: {invoice details (lnhash, etc.)} }
+
+
+Admin Side
+- GET spotsShouldBeEmpty
+	- Returns
+		- spots with occupied=false
+		- spots with occupied=true and (expiration - now) < 0
+
+
+UUID: 

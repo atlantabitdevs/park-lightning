@@ -3,7 +3,7 @@ const spots = require('../../db/collection');
 
 const getParkingSpotDetails = async (uuid) => {
     try {
-        return { success: true, spot: (await spots.doc(uuid).get()).data() };
+        return { success: true, message: (await spots.doc(uuid).get()).data() };
     } catch (error) {
         debug.error(error.stack);
         throw new Error(error);
