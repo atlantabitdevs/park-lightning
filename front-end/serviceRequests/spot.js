@@ -1,7 +1,7 @@
-const CreateInvoice = () => {
+const GetSpotDetails = () => {
   //do Create invoice
   return {
-    invoiceId: "d8d05dce-dbae-421b-9bdd-ea3ce75b7a77",
+    spotId: "d8d05dce-dbae-421b-9bdd-ea3ce75b7a77",
     address: "691 John Wesley Dobbs Ave, Atlanta, GA 30312",
     occupied: true,
     licensePlate: "SC39133",
@@ -12,5 +12,5 @@ const CreateInvoice = () => {
 }
 
 export {
-  CreateInvoice
+  GetSpotDetails
 }
