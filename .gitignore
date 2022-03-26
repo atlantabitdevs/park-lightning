@@ -97,3 +97,7 @@ shellAppWorkspaces
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Local
+.env
+park-lightning*
