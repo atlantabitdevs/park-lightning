@@ -1,6 +1,6 @@
 import AdminLanding from "./AdminLanding";
-import Landing from "./Landing";
+import ParkingUserLanding from "./ParkingUserLanding";
 export {
   AdminLanding,
-  Landing
+  ParkingUserLanding,
 }

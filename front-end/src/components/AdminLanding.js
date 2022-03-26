@@ -5,7 +5,7 @@ const AdminLanding = () => {
   return (
     <div >
       <p>Landing Page</p>
-      <Link to="nextPage">next</Link>
+      {/* <Link to="nextPage">next</Link> */}
     </div>
   )
 }
