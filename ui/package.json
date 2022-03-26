@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "create-react-native-web-app": "^0.16.4"
+  }
+}
