@@ -1,4 +1,5 @@
 # Park Lightning
+_Parking at the speed of lightning ⚡️_
 
 ## Summary
 Do you hate parking in Atlanta? You are not alone. Current parking solutions provide basic functionality with poor UX and limited payment options.
