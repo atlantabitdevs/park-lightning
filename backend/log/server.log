@@ -1,0 +1,22 @@
+info: Mar-26-2022 14:31:33: 	API Server listening on http://127.0.0.1:8081
+info: Mar-26-2022 14:32:07: 	Spot Response: undefined
+error: Mar-26-2022 14:32:07: 	TypeError: Cannot read properties of undefined (reading 'success')
+    at getParkingSpotDetails (/Users/hu5ky5n0w/Projects/Lightning/park-lightning/backend/api/spot/spotController.js:11:19)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+info: Mar-26-2022 14:32:31: 	API Server listening on http://127.0.0.1:8081
+error: Mar-26-2022 14:32:33: 	ReferenceError: response is not defined
+    at getParkingSpotDetails (/Users/hu5ky5n0w/Projects/Lightning/park-lightning/backend/api/spot/spotController.js:10:49)
+    at Layer.handle [as handle_request] (/Users/hu5ky5n0w/Projects/Lightning/park-lightning/backend/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/hu5ky5n0w/Projects/Lightning/park-lightning/backend/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/hu5ky5n0w/Projects/Lightning/park-lightning/backend/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/hu5ky5n0w/Projects/Lightning/park-lightning/backend/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/hu5ky5n0w/Projects/Lightning/park-lightning/backend/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/hu5ky5n0w/Projects/Lightning/park-lightning/backend/node_modules/express/lib/router/index.js:341:12)
+    at next (/Users/hu5ky5n0w/Projects/Lightning/park-lightning/backend/node_modules/express/lib/router/index.js:275:10)
+    at expressInit (/Users/hu5ky5n0w/Projects/Lightning/park-lightning/backend/node_modules/express/lib/middleware/init.js:40:5)
+    at Layer.handle [as handle_request] (/Users/hu5ky5n0w/Projects/Lightning/park-lightning/backend/node_modules/express/lib/router/layer.js:95:5)
+info: Mar-26-2022 14:32:44: 	API Server listening on http://127.0.0.1:8081
+info: Mar-26-2022 14:32:52: 	API Server listening on http://127.0.0.1:8081
+info: Mar-26-2022 14:33:53: 	API Server listening on http://127.0.0.1:8081
+info: Mar-26-2022 14:34:39: 	API Server listening on http://127.0.0.1:8081
+info: Mar-26-2022 14:34:59: 	API Server listening on http://127.0.0.1:8081
