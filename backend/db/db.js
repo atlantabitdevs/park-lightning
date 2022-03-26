@@ -1,4 +1,4 @@
-const utils = require('../utils/utils');
+const utils = require('../utils/debug');
 const admin = require('firebase-admin');
 const GOOGLE_APPLICATION_CREDENTIALS = JSON.parse(
   Buffer.from(process.env.GOOGLE_APPLICATION_CREDENTIALS, 'base64').toString(
