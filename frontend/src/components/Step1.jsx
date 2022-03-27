@@ -46,7 +46,7 @@ const ParkingUserLanding = () => {
           <div className="space-y-8 basis-8/12">
             <div className="space-y-1">
               <h3 className="font-bold text-xl">Expires</h3>
-              <p className="text-4xl">{timeIncrements === 1 ? '30 minutes' : ((timeIncrements * timeUnit)/60) + ' hours'}</p>
+              <p className="text-4xl">{timeIncrements === 1 ? '30 mins' : ((timeIncrements * timeUnit)/60) + ' hours'}</p>
               <p className="text-2xl">{expiry.getHours() + ":" + expiry.getMinutes()}</p>
             </div>
             <div className="space-y-1">
@@ -71,7 +71,10 @@ const ParkingUserLanding = () => {
               <span className="sr-only">Back</span> <ArrowLeftIcon className="w-8 h-8" />
             </Button>
           </Link>
-          <Link to="/step2">
+          <Link to={{
+            pathname: "/step2",
+            search: "?expiry=" + expiry.getTime(),
+          }}>
             <Button size="large" importance="primary" href="/test">
               <span className="flex flex-row space-x-4"><span>Step 2</span> <ArrowRightIcon className="w-8 h-8" /></span>
             </Button>

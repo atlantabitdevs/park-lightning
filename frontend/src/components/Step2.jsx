@@ -7,15 +7,20 @@ import Button from './Button';
 import {Link} from 'react-router-dom';
 import React from 'react';
 import Input from './Input';
+import { useSearchParams } from 'react-router-dom';
 
-const ParkingUserLanding = () => {
-    const [location1, setLocation1] = React.useState('Parking Spot 7')
-    const [location2, setLocation2] = React.useState('123 Euclid Ave')
-    const [expiry, setExpiry] = React.useState('9:30pm')
+const ParkingUserLanding = (props) => {
+  const [searchParams] = useSearchParams();  
+  const [location1, setLocation1] = React.useState('Parking Spot 7')
+  const [location2, setLocation2] = React.useState('123 Euclid Ave')
+  const [expiry, setExpiry] = React.useState(searchParams.get('expiry'))
+  const [date, setDate] = React.useState(new Date(searchParams.get('expiry')/1000))
+
   
-    return (
+
+  return (
       <Page>
-        <OrderDetails location1={location1} location2={location2} expiry={expiry} />
+        <OrderDetails location1={location1} location2={location2} expiry={date.getHours() + ":" + date.getMinutes()} />
         <p className="text-4xl">
           Enter your phone number
         </p>
