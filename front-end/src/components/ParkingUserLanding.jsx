@@ -1,14 +1,20 @@
 import OrderDetails from './OrderDetails';
 import Header from './Header';
 import DurationSelection from './DurationSelection';
+import Page from './Page';
+import Button from './Button';
 
 const ParkingUserLanding = () => {
     return (
-        <div className="flex flex-col items-center">
-            <Header />
-            <OrderDetails className="my-6" />
-            <DurationSelection />
-        </div>
+      <Page>
+        <h1>hello world</h1>
+        <Button size="large" importance="primary">Test</Button>
+        <Button size="large" importance="secondary">Test 2</Button>
+        <Button size="small" importance="primary">Test</Button>
+        <Button size="small" importance="secondary">Test 2</Button>
+        <Button size="minimal" importance="primary">Test</Button>
+        <Button size="minimal" importance="secondary">Test 2</Button>
+      </Page>  
     );
 };
 
