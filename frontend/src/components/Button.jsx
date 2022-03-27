@@ -18,7 +18,7 @@ const Button = ({size, importance, children, href}) => {
   
   
   let sizing = size === "large" ? "p-8 text-2xl" : size === "small" ? "p-4 text-xl" : "p-2 text-lg"
-  let styles = "rounded-full font-display text-2xl uppercase tracking-widest" + " " + sizing + " " + color
+  let styles = "rounded-full font-display text-2xl uppercase tracking-widest text-center" + " " + sizing + " " + color
   
   return (
     <button className={styles} href={href}>

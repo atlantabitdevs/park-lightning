@@ -11,11 +11,12 @@ import Input from './Input';
 const Step3Manual = () => {
     const [location1, setLocation1] = React.useState('Parking Spot 7')
     const [location2, setLocation2] = React.useState('123 Euclid Ave')
+    const [phone, setPhone] = React.useState('4041234567')
     const [expiry, setExpiry] = React.useState('9:30pm')
   
     return (
       <Page>
-        <OrderDetails location1={location1} location2={location2} expiry={expiry} />
+        <OrderDetails location1={location1} location2={location2} expiry={expiry} phone={phone} />
         <p className="text-4xl">
           Enter your license plate
         </p>
