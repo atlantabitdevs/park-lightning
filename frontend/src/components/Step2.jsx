@@ -22,6 +22,10 @@ const ParkingUserLanding = () => {
         
         <Input type="tel" placeholder="(404) 123-4567" />
         
+        <p className="text-sm text-neutral-500">
+          This is so we can send you your receipt and notifications if your parking is going to expire.
+        </p>
+        
         <div className="flex flex-row space-x-4">
           <Link to="/step1">
             <Button size="large" importance="secondary" href="/test">
