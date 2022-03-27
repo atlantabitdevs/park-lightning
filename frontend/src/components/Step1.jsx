@@ -1,12 +1,37 @@
-import OrderDetails from './OrderDetails';
-import Header from './Header';
-import DurationSelection from './DurationSelection';
 import {ArrowLeftIcon, ArrowRightIcon, MinusIcon, PlusIcon} from '@bitcoin-design/bitcoin-icons-react/filled';
 import Page from './Page';
 import Button from './Button';
 import {Link} from 'react-router-dom';
+import React from 'react';
 
 const ParkingUserLanding = () => {
+    const [timeIncrements, setTimeIncrements] = React.useState(1)
+    const timeUnit = 30 // minutes
+    const timeMax = 1440 // 24 * 30 minutes
+    const timeMin = 30
+    const [expiry, setExpiry] = React.useState(new Date())
+    const [btcPrice, setBtcPrice] = React.useState(46482.17)
+    const price = 2
+  
+    const increaseTime = () => {
+      if((timeIncrements * timeUnit) < timeMax) {
+        setTimeIncrements(timeIncrements + 1)
+        buildExpiry()
+      }
+    }
+
+    const decreaseTime = () => {
+      if((timeIncrements * timeUnit) > timeMin) {
+        setTimeIncrements(timeIncrements - 1)
+        buildExpiry()
+      }
+    }
+    
+    const buildExpiry = () => {
+      let newExpiry = new Date(expiry.getTime() + (timeIncrements * timeUnit * 60 * 1000))
+      setExpiry(newExpiry)
+    }
+    
     return (
       <Page>
         <p className="text-3xl">
@@ -18,23 +43,23 @@ const ParkingUserLanding = () => {
         </p>
         
         <div className="bg-gradient-to-b from-white to-prk-gray-light border-solid border-2 border-neutral-200 w-full p-8 rounded-3xl flex flex-row space-x-8">
-          <div className="space-y-8">
+          <div className="space-y-8 basis-8/12">
             <div className="space-y-1">
               <h3 className="font-bold text-xl">Expires</h3>
-              <p className="text-4xl">1 hour</p>
-              <p className="text-2xl">9:30pm</p>
+              <p className="text-4xl">{timeIncrements === 1 ? '30 minutes' : ((timeIncrements * timeUnit)/60) + ' hours'}</p>
+              <p className="text-2xl">{expiry.getHours() + ":" + expiry.getMinutes()}</p>
             </div>
             <div className="space-y-1">
               <h3 className="font-bold text-xl">Price</h3>
-              <p className="text-4xl">$5</p>
-              <p className="text-2xl">11,250 sats</p>
+              <p className="text-4xl">${timeIncrements * price}</p>
+              <p className="text-2xl">{ (((timeIncrements* price)/btcPrice) * 100000000).toFixed(0) } sats</p>
             </div>
           </div>
-          <div className="flex flex-col space-y-8">
-            <Button size="large" importance="secondary" href="/test">
+          <div className="flex flex-col space-y-8 basis-4/12">
+            <Button size="large" importance="secondary" href="/test" onClick={increaseTime}>
               <PlusIcon className="w-8 h-8" />
             </Button>
-            <Button size="large" importance="secondary" href="/test">
+            <Button size="large" importance="secondary" href="/test" onClick={decreaseTime}>
               <MinusIcon className="w-8 h-8" />
             </Button>
           </div>
