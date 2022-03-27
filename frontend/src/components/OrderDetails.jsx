@@ -1,20 +1,19 @@
 import { useEffect, useState } from 'react';
 import { GetSpotDetails } from '../serviceRequests/spot'
 
-const initialState = {
-    address: '',
-    spotNumber: '',
-    occupied: ''
-}
-
 const uuid = 'da1c0d1b-1ecf-4fe0-9acd-dc3d49640f8f'
 
-const OrderDetails = ({ className }) => {
-    const [spotDetails, setSpotDetails] = useState(initialState);
-    GetSpotDetails(uuid).then(spotDetails => {
+const OrderDetails = ({ className, uuid }) => {
+    const [spotDetails, setSpotDetails] = useState({ address: '', spotNumber: '', occupied: '' });
+    GetSpotDetails(uuid)
+    .then(spotDetails => {
         // console.log(spotDetails.message)
         setSpotDetails(spotDetails.message)
     })
+    .catch(err => {
+        console.log(err);
+    })
+
     return (
         <div className={className}>
             {console.log(spotDetails)}
