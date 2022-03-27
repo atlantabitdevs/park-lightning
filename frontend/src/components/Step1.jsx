@@ -19,7 +19,10 @@ const ParkingUserLanding = () => {
   const navigate = useNavigate();
 
   const toStep2 = () => {
-    navigate('/step2', {state:{expiry: expiry.getTime()}})
+    navigate('/step2', {state:{
+      expiry: expiry.getTime(),
+      spotDetails: location.state.spotDetails
+    }})
   }
   
     const increaseTime = () => {
@@ -44,7 +47,7 @@ const ParkingUserLanding = () => {
     return (
       <Page>
         <p className="text-3xl">
-             <strong>Spot #{location.state.spotDetails.spotNumber}</strong><br />
+            <strong>Spot #{location.state.spotDetails.spotNumber}</strong><br />
             {location.state.spotDetails.address.split(',')[0]}
             <br />
             {location.state.spotDetails.address.split(',')[1]}, {location.state.spotDetails.address.split(',')[2]}

@@ -14,6 +14,7 @@ const ParkingUserLanding = (props) => {
   const location = useLocation()
   const [location1, setLocation1] = React.useState('Parking Spot 7')
   const [location2, setLocation2] = React.useState('123 Euclid Ave')
+  const [location3, setLocation3] = React.useState('Atlanta, GA 30312')
   // const [expiry, setExpiry] = React.useState(searchParams.get('expiry'))
   // const [date, setDate] = React.useState(new Date(searchParams.get('expiry')/1000))
   const [expiry, setExpiry] = React.useState(location.state.expiry)
@@ -25,7 +26,14 @@ const ParkingUserLanding = (props) => {
 
   return (
       <Page>
-        <OrderDetails location1={location1} location2={location2} expiry={date.getHours() + ":" + date.getMinutes()} />
+        <OrderDetails
+          spot={location.state.spotDetails.spotNumber}
+          location1={location.state.spotDetails.address.split(',')[0]}
+          location2={location.state.spotDetails.address.split(',')[1]}
+          location3={location.state.spotDetails.address.split(',')[2]}
+          expiry={date.getHours() + ":" + date.getMinutes()}
+        />
+        
         <p className="text-4xl">
           Enter your phone number
         </p>
