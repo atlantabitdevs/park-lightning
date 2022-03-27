@@ -21,7 +21,7 @@ const ParkingUserLanding = () => {
         })
     
     const toStep1 = () => {
-        navigate('/step1', { state: spotDetails });
+        navigate('/step1', { state: {spotDetails} });
     }
 
     return (

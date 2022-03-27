@@ -1,7 +1,7 @@
 import {ArrowLeftIcon, ArrowRightIcon, MinusIcon, PlusIcon} from '@bitcoin-design/bitcoin-icons-react/filled';
 import Page from './Page';
 import Button from './Button';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link, useNavigate, useLocation} from 'react-router-dom';
 import React from 'react';
 
 const ParkingUserLanding = () => {
@@ -12,6 +12,9 @@ const ParkingUserLanding = () => {
     const [expiry, setExpiry] = React.useState(new Date())
     const [btcPrice, setBtcPrice] = React.useState(46482.17)
     const price = 2
+  const location = useLocation()
+    
+  console.log(location.state)
 
   const navigate = useNavigate();
 
@@ -41,10 +44,10 @@ const ParkingUserLanding = () => {
     return (
       <Page>
         <p className="text-3xl">
-             <strong>Spot #{state.spotNumber}</strong><br />
-            {address[0]}
+             <strong>Spot #{location.state.spotDetails.spotNumber}</strong><br />
+            {location.state.spotDetails.address.split(',')[0]}
             <br />
-            {address[1]}, {address[2]}
+            {location.state.spotDetails.address.split(',')[1]}, {location.state.spotDetails.address.split(',')[2]}
         </p>
         <p className="text-4xl">
           How long would you like to park?
