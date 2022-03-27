@@ -40,6 +40,10 @@ const Step3 = () => {
             </Toggle>
           </div>
         </div>
+
+        <p className="text-sm text-neutral-500">
+          Take a picture of your license plate, or type it in manually.
+        </p>
         
         <div className="flex flex-row space-x-4">
           <Link to="/step2">
