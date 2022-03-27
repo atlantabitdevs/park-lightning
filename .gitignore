@@ -100,4 +100,5 @@ shellAppWorkspaces
 
 # Local
 .env
-park-lightning*
+park-lightning-ef90eb2b735e.json
+log/
