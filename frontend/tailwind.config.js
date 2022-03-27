@@ -8,6 +8,7 @@ module.exports = {
             "prk-blue-light": "#47C8FF",
             "prk-orange": "#C57600",
             "prk-orange-light": "#DEC800",
+            "prk-gray-light": "#EFEFEF",
             ...colors
         },
         extend: {
