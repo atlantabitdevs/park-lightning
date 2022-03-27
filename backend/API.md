@@ -13,7 +13,7 @@ API Data Objects
 5 Routes
 1. Route: `/api/v1/spot/details`
     - Method: `GET`
-    - URL: https://api.parklightning.com/api/v1/spot/details?uuid=d8d05dce-dbae-421b-9bdd-ea3ce75b7a77
+    - URL: https://park-lightning-foiudx76uq-ue.a.run.app/api/v1/spot/details?uuid=d8d05dce-dbae-421b-9bdd-ea3ce75b7a77
 ```json
 Body: None
 
@@ -33,7 +33,7 @@ Returns:
 ```
 2. Route: `/api/v1/spot/reserve`
     - Method: `POST`
-    - URL: https://api.parklightning.com/api/v1/spot/reserve
+    - URL: https://park-lightning-foiudx76uq-ue.a.run.app/api/v1/spot/reserve
 ```json
 Body:
                 {
@@ -55,7 +55,7 @@ Returns:
 ```
 3. Route: `/api/v1/invoice/create`
     - Method: `POST`
-    - URL: https://api.parklightning.com/api/v1/invoice/create
+    - URL: https://park-lightning-foiudx76uq-ue.a.run.app/api/v1/invoice/create
 ```json
 Body:
                 {
@@ -102,7 +102,7 @@ Returns:
 ```
 4. Route: `/api/v1/invoice/check`
     - Method: `POST`
-    - URL: https://api.parklightning.com/api/v1/invoice/create
+    - URL: https://park-lightning-foiudx76uq-ue.a.run.app/api/v1/invoice/create
 ```json
 Body:
               {
@@ -144,7 +144,7 @@ Returns:
 
 5. Route: `/api/v1/spot/empty`
   - Method: `GET`
-  - URL: /api/v1/spot/empty
+  - URL: https://park-lightning-foiudx76uq-ue.a.run.app/api/v1/spot/empty
 	```json
   Body: None
 
