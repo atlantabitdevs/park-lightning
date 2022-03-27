@@ -40,4 +40,19 @@ const reserveParkingSpot = async (req, res) => {
     }
 };
 
-module.exports = { getParkingSpotDetails, reserveParkingSpot };
+const shouldBeEmpty = async () => {
+    try {
+        const response = await spotService.shouldBeEmpty();
+
+        debug.info(`Spot Details Response: ${JSON.stringify(response)}`);
+
+        if (!response.success) res.status(500).json(response);
+        else res.status(200).json(response);
+
+    } catch (error) {
+        debug.error(error.stack);
+        res.status(500).json({ message: error.message, error: error.stack });
+    }
+}
+
+module.exports = { getParkingSpotDetails, reserveParkingSpot, shouldBeEmpty };

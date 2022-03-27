@@ -32,4 +32,18 @@ const reserveParkingSpot = async (uuid, licensePlate, duration) => {
     }
 };
 
-module.exports = { getParkingSpotDetails, reserveParkingSpot };
+const shouldBeEmpty = async () => {
+    try {
+        const spots = await spots
+        .where('occupied', '==', false)
+        .where('occupied', '==', true)
+        .where('expiration', '<', 0)
+        .get();
+        return { success: true, message: spots };
+    } catch (error) {
+        debug.error(error.stack);
+        throw new Error(error);
+    }
+}
+
+module.exports = { getParkingSpotDetails, reserveParkingSpot, shouldBeEmpty };
