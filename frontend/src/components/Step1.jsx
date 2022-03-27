@@ -41,8 +41,10 @@ const ParkingUserLanding = () => {
     return (
       <Page>
         <p className="text-3xl">
-            <strong>Parking Spot 7</strong><br />
-            123 Euclid Ave
+             <strong>Spot #{state.spotNumber}</strong><br />
+            {address[0]}
+            <br />
+            {address[1]}, {address[2]}
         </p>
         <p className="text-4xl">
           How long would you like to park?
