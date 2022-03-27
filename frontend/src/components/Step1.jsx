@@ -1,7 +1,7 @@
 import {ArrowLeftIcon, ArrowRightIcon, MinusIcon, PlusIcon} from '@bitcoin-design/bitcoin-icons-react/filled';
 import Page from './Page';
 import Button from './Button';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link, useNavigate, useLocation} from 'react-router-dom';
 import React from 'react';
 
 const ParkingUserLanding = () => {
@@ -14,6 +14,9 @@ const ParkingUserLanding = () => {
     const price = 2
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const state = location.state;
+  const address = state.address.split(',')
 
   const toStep2 = () => {
     navigate('/step2', {state:{expiry: expiry.getTime()}})

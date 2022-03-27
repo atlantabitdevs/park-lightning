@@ -35,11 +35,9 @@ const ParkingUserLanding = () => {
             <p className="text-3xl">
                 Welcome to Arion.<br />Pay for your parking with bitcoin in 4 easy steps.
             </p>
-            {/* <Link to={{ pathname: "/step1", state: 'test' }}> */}
-            <Button size="large" importance="primary" href="/test">
-                <a onClick={() => { toStep1() }}> <span className="flex flex-row space-x-4"><span>Step 1</span> <ArrowRightIcon className="w-8 h-8" /></span> </a>
+            <Button size="large" importance="primary" href="/test" onClick={toStep1}>
+                <span className="flex flex-row space-x-4"><span>Step 1</span> <ArrowRightIcon className="w-8 h-8" /></span>
             </Button>
-            {/* </Link> */}
         </Page>
     );
 };
