@@ -14,15 +14,16 @@ const ParkingUserLanding = () => {
     const [spotDetails, setSpotDetails] = useState({ address: '', spotNumber: '', occupied: '' });
     GetSpotDetails(uuid)
         .then(spotDetails => {
-            // console.log(spotDetails.message)
             setSpotDetails(spotDetails.message)
         })
         .catch(err => {
             console.log(err);
         })
+    
     const toStep1 = () => {
         navigate('/step1', { state: spotDetails });
     }
+
     return (
         <Page>
             <p className="text-3xl">
