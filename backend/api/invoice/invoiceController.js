@@ -19,13 +19,8 @@ const createInvoice = async (req, res) => {
 
 const checkInvoice = async (req, res) => {
     try {
-        const amount = req.body.amount;
-        const licensePlate = req.body.licensePlate;
-        const duration = req.body.duration;
-        const response = await invoiceService.broadcastString(
-            stringData,
-            mutationType
-        );
+        const id = req.body.id
+        const response = await invoiceService.checkInvoice(id);
 
         debug.info(`Invoice Creation Response: ${JSON.stringify(response)}`);
 
@@ -37,4 +32,4 @@ const checkInvoice = async (req, res) => {
     }
 };
 
-module.exports = { createInvoice };
+module.exports = { createInvoice, checkInvoice };

@@ -9,6 +9,8 @@ __generated__
 node_modules
 npm-debug.log
 yarn-error.log
+yarn.lock
+package-lock.json
 
 # Emacs
 *~
@@ -99,5 +101,6 @@ shellAppWorkspaces
 .env.production.local
 
 # Local
-.env
-park-lightning*
+park-lightning-ef90eb2b735e.json
+log/
+.vscode
