@@ -4,14 +4,20 @@ import DurationSelection from './DurationSelection';
 import {ArrowLeftIcon, ArrowRightIcon, MinusIcon, PlusIcon} from '@bitcoin-design/bitcoin-icons-react/filled';
 import Page from './Page';
 import Button from './Button';
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 
 const ParkingUserLanding = () => {
+  const location = useLocation();
+  const state = location.state;
+  const address = state.address.split(',')
+
     return (
       <Page>
         <p className="text-3xl">
-            <strong>Parking Spot 7</strong><br />
-            123 Euclid Ave
+             <strong>Spot #{state.spotNumber}</strong><br />
+            {address[0]}
+            <br />
+            {address[1]}, {address[2]}
         </p>
         <p className="text-4xl">
           How long would you like to park?

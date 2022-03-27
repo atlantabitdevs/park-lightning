@@ -1,7 +1,7 @@
 import ParkingUserLanding from './components/ParkingUserLanding';
 import DurationSelection from './components/DurationSelection'
 import { AdminLanding } from './components';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import Step1 from './components/Step1';
 import Step2 from './components/Step2';
 import Step3 from './components/Step3';

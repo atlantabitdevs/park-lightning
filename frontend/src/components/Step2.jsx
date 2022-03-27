@@ -8,7 +8,9 @@ import {Link} from 'react-router-dom';
 import React from 'react';
 import Input from './Input';
 
-const ParkingUserLanding = () => {
+const ParkingUserLanding = (props) => {
+    const { state } = props
+    console.log(state)
     const [location1, setLocation1] = React.useState('Parking Spot 7')
     const [location2, setLocation2] = React.useState('123 Euclid Ave')
     const [expiry, setExpiry] = React.useState('9:30pm')
