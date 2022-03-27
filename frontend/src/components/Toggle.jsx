@@ -1,5 +1,3 @@
-import {ScanIcon} from '@bitcoin-design/bitcoin-icons-react/filled';
-
 const Toggle = ({children, active, onClick}) => {
   let colors;
   if(active === "true" || active === true) {
