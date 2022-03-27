@@ -37,4 +37,4 @@ const checkInvoice = async (req, res) => {
     }
 };
 
-module.exports = { createInvoice };
+module.exports = { createInvoice, checkInvoice };
