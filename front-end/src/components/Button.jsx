@@ -1,4 +1,4 @@
-const Button = ({size, importance, children}) => {
+const Button = ({size, importance, children, href}) => {
   let color;
   if(importance === "primary" && size !== "minimal") {
     color = "text-white bg-gradient-to-b from-prk-blue-light to-prk-blue"
@@ -21,7 +21,7 @@ const Button = ({size, importance, children}) => {
   let styles = "rounded-full font-display text-2xl uppercase tracking-widest" + " " + sizing + " " + color
   
   return (
-    <button className={styles}>
+    <button className={styles} href={href}>
       {children}
     </button>
   );

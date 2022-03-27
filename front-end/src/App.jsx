@@ -8,6 +8,7 @@ function App() {
             <Routes>
                 <Route path="admin" element={<AdminLanding />} />
                 <Route path="/" element={<ParkingUserLanding />} />
+              <Route path="/test" element={<ParkingUserLanding />} />
             </Routes>
         </>
     );
