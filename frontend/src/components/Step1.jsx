@@ -17,7 +17,7 @@ const ParkingUserLanding = () => {
           How long would you like to park?
         </p>
         
-        <div className="bg-gradient-to-b from-white to-prl-gray-light border-solid border-2 border-neutral-200 w-full p-8 rounded-3xl flex flex-row space-x-8">
+        <div className="bg-gradient-to-b from-white to-prk-gray-light border-solid border-2 border-neutral-200 w-full p-8 rounded-3xl flex flex-row space-x-8">
           <div className="space-y-8">
             <div className="space-y-1">
               <h3 className="font-bold text-xl">Expires</h3>
