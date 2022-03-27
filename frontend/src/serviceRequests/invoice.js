@@ -1,23 +1,33 @@
-const CreateInvoice = async (satsAmount) => {
+const API_URL = 'https://park-lightning-foiudx76uq-ue.a.run.app'
 
-  const res = await fetch('https://api/invoice/create', {
+const CreateInvoice = async (amount, memo) => {
+
+  const res = await fetch(`${API_URL}/api/v1/invoice/create`, {
     method: 'POST',
     body: {
-      satsAmount
+      amount,
+      memo
     }
-
   });
 
   console.log(res)
-  //do Create invoice
+  return await res.json()
+}
 
-  return {
-    //invoice
-    lnHash: 'lightning:aasdfsdf',
-    expires: 1000
-  }
+const CheckInvoice = async (id) => {
+
+  const res = await fetch(`${API_URL}/api/v1/invoice/check`, {
+    method: 'POST',
+    body: {
+      id
+    }
+  });
+
+  console.log(res)
+  return await res.json()
 }
 
 export {
-  CreateInvoice
+  CreateInvoice,
+  CheckInvoice
 }
