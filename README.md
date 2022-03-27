@@ -6,7 +6,14 @@ Do you hate parking in Atlanta? You are not alone. Current parking solutions pro
 Would you prefer to use the lightning network to pay instantly from anywhere? Enter Park Lightning, Parking at the Speed of Lightning.
 
 ## Tech Stack
-- Voltage lightning node
-- React UI
-- Cloud noSQL database
+- Backend
+  - Node.js
+  - Express.js
+  - Firebase / Firestore (noSQL document DB)
+- Frontend
+  - React / React-Scripts
+  - Tailwind.css
+  - Bitcoin Design
+- Lightning
+  - OpenNode API
 
