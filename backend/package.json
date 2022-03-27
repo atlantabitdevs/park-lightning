@@ -1,9 +1,9 @@
 {
-  "name": "park-lightning",
+  "name": "park-lightning-api",
   "version": "1.0.0",
   "description": "Parking at the speed of lightning ⚡️",
   "main": "server.js",
-  "repository": "git@github.com:bnonni/park-lightning.git",
+  "repository": "git@github.com:atlantabitdevs/park-lightning.git",
   "author": "atlantabitdevs@gmail.com",
   "license": "MIT",
   "private": false,
