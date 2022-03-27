@@ -1,7 +1,16 @@
 # API Route Spec
 Below is an outline of the API routes available to both users (parking and paying) and admins (enforcing parking rules).
 
-## User Routes
+## Routes
+User Types
+1. Drivers
+2. Parking Enforcement
+
+API Data Objects
+1. [Spot](./api/spot/)  
+2. [Invoice](./api/invoice/)
+
+5 Routes
 1. Route: `/api/v1/spot/details`
     - Method: `GET`
     - URL: https://api.parklightning.com/api/v1/spot/details?uuid=d8d05dce-dbae-421b-9bdd-ea3ce75b7a77
@@ -92,7 +101,7 @@ Returns:
 
 ```
 4. Route: `/api/v1/invoice/check`
- - Method: `POST`
+    - Method: `POST`
     - URL: https://api.parklightning.com/api/v1/invoice/create
 ```json
 Body:
@@ -133,12 +142,42 @@ Returns:
             }
 ```
 
-Admin Side:
-spot
-- GET spot/empty
-	- Returns
-		- spots with occupied=false
-		- spots with occupied=true and (expiration - now) < 0
+5. Route: `/api/v1/spot/empty`
+  - Method: `GET`
+  - URL: /api/v1/spot/empty
+	```json
+  Body: None
 
-
-UUID: 
+  Returns:
+            {
+              "success": true,
+              "message": {
+                  "unoccupiedSpots": [
+                      {
+                          "address": "691 John Wesley Dobbs Ave, Atlanta, GA 30312",
+                          "occupied": false
+                      }
+                  ],
+                  "expiredSpots": [
+                      {
+                          "expired": true,
+                          "expirationTime": 1648319420,
+                          "duration": 1800,
+                          "address": "691 John Wesley Dobbs Ave, Atlanta, GA 30312",
+                          "occupied": true,
+                          "licensePlate": "SC39133",
+                          "startTime": 1648317620
+                      },
+                      {
+                          "occupied": true,
+                          "address": "79 5th St NW, Atlanta, GA 30308",
+                          "expirationTime": 1648327169,
+                          "expired": true,
+                          "duration": 1800,
+                          "licensePlate": "BOE8359",
+                          "startTime": 1648325369
+                      }
+                  ]
+              }
+          }
+```
