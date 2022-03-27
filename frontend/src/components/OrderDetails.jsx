@@ -1,9 +1,36 @@
-const OrderDetails = ({ className }) => {
+const OrderDetails = ({location1, location2, expiry, phone, license}) => {
     return (
-        <div className={className}>
-            <h1 className="font-bold text-2xl">Parking Spot 7</h1>
-            <h1 className="text-2xl">123 Euclid Ave</h1>
+      <div className="flex flex-col w-full space-y-4 text-sm">
+        <div className="flex flex-row space-x-4">
+          <div className={location1 ? 'basis-6/12 text-black' : 'basis-6/12 text-neutral-400'}>
+            <h4 className="font-bold">Location</h4>
+            <p>
+              {location1 ? location1 : "---"}<br />
+              {location2 ? location2 : ""}
+            </p>
+          </div>
+          <div className={expiry ? 'basis-6/12 text-black' : 'basis-6/12 text-neutral-400'}>
+            <h4 className="font-bold">Expires</h4>
+            <p>
+              {expiry ? expiry : "---"}
+            </p>
+          </div>
         </div>
+        <div className="flex flex-row space-x-4">
+          <div className={license ? 'basis-6/12 text-black' : 'basis-6/12 text-neutral-400'}>
+            <h4 className="font-bold">License</h4>
+            <p>
+              {license ? license : "---"}
+            </p>
+          </div>
+          <div className={phone ? 'basis-6/12 text-black' : 'basis-6/12 text-neutral-400'}>
+            <h4 className="font-bold">Phone</h4>
+            <p>
+              {phone ? phone : "---"}
+            </p>
+          </div>
+        </div>
+      </div>
     );
 };
 
