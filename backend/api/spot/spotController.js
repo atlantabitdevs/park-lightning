@@ -40,7 +40,7 @@ const reserveParkingSpot = async (req, res) => {
     }
 };
 
-const shouldBeEmpty = async () => {
+const shouldBeEmpty = async (req, res) => {
     try {
         const response = await spotService.shouldBeEmpty();
 

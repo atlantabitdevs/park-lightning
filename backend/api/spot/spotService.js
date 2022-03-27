@@ -34,16 +34,40 @@ const reserveParkingSpot = async (uuid, licensePlate, duration) => {
 
 const shouldBeEmpty = async () => {
     try {
-        const spots = await spots
-        .where('occupied', '==', false)
-        .where('occupied', '==', true)
-        .where('expiration', '<', 0)
-        .get();
-        return { success: true, message: spots };
+        const shouldBeEmptySpots = {}
+        const expiredSpots = [];
+        const emptySpots = [];
+        const now = Math.floor(new Date().getTime() / 1000);
+        const unoccupiedSpots = await spots
+            .where('occupied', '==', false)
+            .get();
+        
+        unoccupiedSpots.forEach(spot => {
+            emptySpots.push(spot.data())
+        })
+        shouldBeEmptySpots.unoccupiedSpots = emptySpots;
+
+        const occupiedSpots = await spots
+            .where('occupied', '==', true)
+            .get();
+        
+        occupiedSpots.forEach((spot) => {
+            const spotData = spot.data()
+            if((spotData.expirationTime - now) <= 0){
+                spots.doc(spot.id).update({
+                    expired: true
+                })
+                spotData.expired = true;
+                expiredSpots.push(spotData)
+            }
+        })
+        shouldBeEmptySpots.expiredSpots = expiredSpots;
+
+        return { success: true, message: shouldBeEmptySpots };
     } catch (error) {
         debug.error(error.stack);
         throw new Error(error);
     }
-}
+};
 
 module.exports = { getParkingSpotDetails, reserveParkingSpot, shouldBeEmpty };
