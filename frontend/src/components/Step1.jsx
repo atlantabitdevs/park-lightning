@@ -1,7 +1,7 @@
 import {ArrowLeftIcon, ArrowRightIcon, MinusIcon, PlusIcon} from '@bitcoin-design/bitcoin-icons-react/filled';
 import Page from './Page';
 import Button from './Button';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import React from 'react';
 
 const ParkingUserLanding = () => {
@@ -12,6 +12,12 @@ const ParkingUserLanding = () => {
     const [expiry, setExpiry] = React.useState(new Date())
     const [btcPrice, setBtcPrice] = React.useState(46482.17)
     const price = 2
+
+  const navigate = useNavigate();
+
+  const toStep2 = () => {
+    navigate('/step2', {state:{expiry: expiry.getTime()}})
+  }
   
     const increaseTime = () => {
       if((timeIncrements * timeUnit) < timeMax) {
@@ -71,14 +77,14 @@ const ParkingUserLanding = () => {
               <span className="sr-only">Back</span> <ArrowLeftIcon className="w-8 h-8" />
             </Button>
           </Link>
-          <Link to={{
-            pathname: "/step2",
-            search: "?expiry=" + expiry.getTime(),
-          }}>
-            <Button size="large" importance="primary" href="/test">
+          {/*<Link to={{*/}
+          {/*  pathname: "/step2",*/}
+          {/*  search: "?expiry=" + expiry.getTime(),*/}
+          {/*}}>*/}
+            <Button size="large" importance="primary" onClick={toStep2}>
               <span className="flex flex-row space-x-4"><span>Step 2</span> <ArrowRightIcon className="w-8 h-8" /></span>
             </Button>
-          </Link>
+          {/*</Link>*/}
         </div>
       </Page>  
     );

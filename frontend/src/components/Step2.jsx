@@ -4,17 +4,22 @@ import DurationSelection from './DurationSelection';
 import {ArrowLeftIcon, ArrowRightIcon, MinusIcon, PlusIcon} from '@bitcoin-design/bitcoin-icons-react/filled';
 import Page from './Page';
 import Button from './Button';
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import React from 'react';
 import Input from './Input';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
 const ParkingUserLanding = (props) => {
-  const [searchParams] = useSearchParams();  
+  // const [searchParams] = useSearchParams();
+  const location = useLocation()
   const [location1, setLocation1] = React.useState('Parking Spot 7')
   const [location2, setLocation2] = React.useState('123 Euclid Ave')
-  const [expiry, setExpiry] = React.useState(searchParams.get('expiry'))
-  const [date, setDate] = React.useState(new Date(searchParams.get('expiry')/1000))
+  // const [expiry, setExpiry] = React.useState(searchParams.get('expiry'))
+  // const [date, setDate] = React.useState(new Date(searchParams.get('expiry')/1000))
+  const [expiry, setExpiry] = React.useState(location.state.expiry)
+  const [date, setDate] = React.useState(new Date(location.state.expiry))
+  
+
 
   
 
