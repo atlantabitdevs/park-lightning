@@ -1,8 +1,20 @@
-# Park Lightning
+![Arion](arion.png)
+
+# Arion
 _Parking at the speed of lightning ⚡️_
 
 ## Summary
-Do you hate parking in Atlanta? You are not alone. Current parking solutions has a poor UX, requires login, limited payment options, limited parking duration options and high minimum costs to consumers. Wouldn't it be great if you could park easily and simply via a clean UX, not requiring login and paying using the lightning network instantly from anywhere? Enter Quick Park, Parking at the Speed of Lightning ⚡️
+Do you hate parking in Atlanta? You are not alone. Current parking solutions has a poor UX, requires login, limited payment options, limited parking duration options and high minimum costs to consumers. Wouldn't it be great if you could park easily and simply via a clean UX, not requiring login and paying using the lightning network instantly from anywhere? Enter Arion, Parking at the Speed of Lightning ⚡️
+
+### Live Demo
+
+[ArionParking.tech](https://arionparking.tech)
+
+This is a mainnet demo, so be cautious with your funds.
+
+### UX/UI Design
+
+[See Figma File](https://www.figma.com/file/uxLCmHch7dEqsnl6qElOOS/Atlanta-Lightning-Parking?node-id=0%3A1)
 
 ## Tech Stack
 - Backend
@@ -12,7 +24,7 @@ Do you hate parking in Atlanta? You are not alone. Current parking solutions has
 - Frontend
   - React / React-Scripts
   - Tailwind.css
-  - Bitcoin Design
+  - Bitcoin Icons
 - Lightning
   - OpenNode API
 
