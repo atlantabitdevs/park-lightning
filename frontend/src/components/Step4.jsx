@@ -13,6 +13,7 @@ import Button from './Button';
 import {Link} from 'react-router-dom';
 import React from 'react';
 import Input from './Input';
+import {ThumbDownIcon, ThumbUpIcon} from '@heroicons/react/solid';
 
 const Step3Manual = () => {
     const [location1, setLocation1] = React.useState('Parking Spot 7')
@@ -133,9 +134,17 @@ const Step3Manual = () => {
   
     return (
       <Page>
+        <div className={checkoutComplete ? 'space-y-4' : 'hidden'}>
+          <p className="text-4xl">Your parking is paid.</p>
+          
+          <p className="text-xl">
+            We’ll text you a receipt, and notify you when your parking is nearing expiration.
+          </p>
+        </div>
+        
         <OrderDetails location1={location1} location2={location2} expiry={expiry} phone={phone} license={license} />
         
-        <div className="space-y-2">
+        <div className={checkoutComplete ? "hidden" : "space-y-2"}>
           <p className="text-4xl">
             Please pay
           </p>
@@ -147,9 +156,7 @@ const Step3Manual = () => {
           </p>
         </div>
 
-        <p className={!checkoutComplete ? 'hidden' : ''}>Paid invoice</p>
-        
-        <div className="flex flex-col space-y-4">
+        <div className={checkoutComplete ? "hidden" : "flex flex-col space-y-4"}>
           <Button size="large" importance="primary" onClick={share}>
             <span className="flex flex-row space-x-4"><span>Open Wallet</span> <WalletIcon className="w-8 h-8" /></span>
           </Button>
@@ -161,6 +168,19 @@ const Step3Manual = () => {
               <span className="flex flex-row space-x-4 w-full items-center justify-center"><ArrowLeftIcon className="w-8 h-8" /> <span>Back</span></span>
             </Button>
           </Link>
+        </div>
+
+        <div className={checkoutComplete ? 'space-y-4 flex flex-col items-center justify-center' : 'hidden'}>
+          <p className="text-4xl">How was your parking experience?</p>
+
+          <div className="flex flex-row space-x-4">
+            <Button size="large" importance="secondary" onClick={()=>{alert('Feedback received!')}}>
+              <span className="sr-only">Bad</span> <ThumbDownIcon className="w-8 h-8" />
+            </Button>
+            <Button size="large" importance="primary" onClick={()=>{alert('Feedback received!')}}>
+              <span className="sr-only">Good</span> <ThumbUpIcon className="w-8 h-8" />
+            </Button>
+          </div>
         </div>
       </Page>  
     );
