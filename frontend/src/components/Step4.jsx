@@ -91,6 +91,29 @@ const Step3Manual = () => {
       });
   }
   
+  function share() {
+    if (navigator.share) {
+      navigator.share({
+        title: 'Arion Invoice',
+        url: 'https://arionparking.tech/step4',
+        invoice: invoice
+      }).then(() => {
+        console.log('Thanks for sharing!');
+      })
+        .catch(console.error);
+    }
+    else {
+      console.log('No navigator sharing API')
+    }
+  }
+
+  function copyInvoice() {
+    navigator.clipboard.writeText(invoice).then(
+      ()=>{ console.log("Copied") },
+      err=>{ console.log("An error occurred copying") }
+    )
+  }
+  
   React.useEffect(()=>{
     if(!invoice) {
       getInvoice(parkingPrice, license, uuid)
@@ -123,16 +146,14 @@ const Step3Manual = () => {
             11250 sats
           </p>
         </div>
-        
-        <p className={checkoutComplete ? 'hidden' : ''}>{invoice}</p>
 
         <p className={!checkoutComplete ? 'hidden' : ''}>Paid invoice</p>
         
         <div className="flex flex-col space-y-4">
-          <Button size="large" importance="primary">
+          <Button size="large" importance="primary" onClick={share}>
             <span className="flex flex-row space-x-4"><span>Open Wallet</span> <WalletIcon className="w-8 h-8" /></span>
           </Button>
-          <Button size="large" importance="primary">
+          <Button size="large" importance="primary" onClick={copyInvoice}>
             <span className="flex flex-row space-x-4"><span>Copy Invoice</span> <CopyIcon className="w-8 h-8" /></span>
           </Button>
           <Link to="/step3-manual">
