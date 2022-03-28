@@ -12,6 +12,10 @@ Do you hate parking in Atlanta? You are not alone. Current parking solutions hav
 
 This is a mainnet demo, so be cautious with your funds.
 
+The user starts by scanning a QR code by their parking spot similar to this:
+
+![Entry point QR code](entry.png)
+
 ### UX/UI Design
 
 [See Figma File](https://www.figma.com/file/uxLCmHch7dEqsnl6qElOOS/Atlanta-Lightning-Parking?node-id=0%3A1)
