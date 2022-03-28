@@ -1,32 +1,54 @@
 import OrderDetails from './OrderDetails';
-import Header from './Header';
-import DurationSelection from './DurationSelection';
 import {
   ArrowLeftIcon,
-  ArrowRightIcon, CopyIcon,
-  MinusIcon,
-  PlusIcon,
+  CopyIcon,
   WalletIcon
 } from '@bitcoin-design/bitcoin-icons-react/filled';
 import Page from './Page';
 import Button from './Button';
-import {Link} from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import React from 'react';
-import Input from './Input';
 import {ThumbDownIcon, ThumbUpIcon} from '@heroicons/react/solid';
 
-const Step3Manual = () => {
-    const [location1, setLocation1] = React.useState('Parking Spot 7')
-    const [location2, setLocation2] = React.useState('123 Euclid Ave')
-    const [phone, setPhone] = React.useState('4041234567')
-    const [license, setLicense] = React.useState('ABC 123')
-    const [expiry, setExpiry] = React.useState('9:30pm')
-    const [invoice, setInvoice] = React.useState('')
-    const [parkingPrice] = React.useState(0.01)
-    const [checkoutComplete, setCheckoutComplete] = React.useState(false)
-    const [elapsed, setElapsed] = React.useState(1)
-    const [uuid] = React.useState('da1c0d1b-1ecf-4fe0-9acd-dc3d49640f8f')
-    const [invoiceId, setInvoiceId] = React.useState('')
+const Step4 = () => {
+  const navigate = useNavigate();
+  const state = useLocation().state;
+  const address = state.address.split(',')
+  const [uuid] = useState('da1c0d1b-1ecf-4fe0-9acd-dc3d49640f8f')
+  
+  const [expiry, setExpiry] = useState(state.expiry)
+  const [date, setDate] = useState(new Date(state.expiry))
+  const [phone, setPhone] = useState(state.phone)
+  const [choice, setChoice] = useState(state.choice)
+  const [license, setLicense] = useState(state.license)
+
+  const [invoice, setInvoice] = useState('')
+  const [invoiceId, setInvoiceId] = useState('')
+
+  const [fiat, setFiat] = useState(state.fiat)
+  const [sats, setSats] = useState(state.sats)
+
+  const [checkoutComplete, setCheckoutComplete] = useState(false)
+  const [elapsed, setElapsed] = useState(1)
+
+  console.log('Step4', state)
+
+  const toStep3Manual = () => {
+    navigate('/step3-manual', {
+      state: {
+        expiry: expiry,
+        address: state.address,
+        spotNumber: state.spotNumber,
+        occupied: state.occupied,
+        phone: state.phone,
+        choice: state.choice,
+        sats: state.sats,
+        fiat: state.fiat,
+        license: license
+      }
+    })
+  }
   
   function getInvoice(amount, license, uuid){
     let myHeaders = new Headers();
@@ -115,13 +137,13 @@ const Step3Manual = () => {
     )
   }
   
-  React.useEffect(()=>{
+  useEffect(()=>{
     if(!invoice) {
-      getInvoice(parkingPrice, license, uuid)
+      getInvoice(fiat, license, uuid)
     }
   })
 
-  React.useEffect(()=>{
+  useEffect(()=>{
     let timer;
     if(invoice && !checkoutComplete) {
       timer = setInterval(() => {
@@ -141,18 +163,25 @@ const Step3Manual = () => {
             We’ll text you a receipt, and notify you when your parking is nearing expiration.
           </p>
         </div>
-        
-        <OrderDetails location1={location1} location2={location2} expiry={expiry} phone={phone} license={license} />
+
+        <OrderDetails
+          location1={`Parking Spot #${state.spotNumber}`}
+          location2={address[0]}
+          location3={address[1] + address[2]}
+          expiry={date.getHours() + ":" + date.getMinutes()}
+          phone={state.phone}
+          license={state.license}
+        />
         
         <div className={checkoutComplete ? "hidden" : "space-y-2"}>
           <p className="text-4xl">
             Please pay
           </p>
           <p className="text-8xl">
-            <small>$</small>5
+            <small>$</small>{fiat}
           </p>
           <p className="text-4xl">
-            11250 sats
+            {sats} sats
           </p>
         </div>
 
@@ -163,11 +192,9 @@ const Step3Manual = () => {
           <Button size="large" importance="primary" onClick={copyInvoice}>
             <span className="flex flex-row space-x-4"><span>Copy Invoice</span> <CopyIcon className="w-8 h-8" /></span>
           </Button>
-          <Link to="/step3-manual">
-            <Button size="minimal" importance="secondary">
+            <Button size="minimal" importance="secondary" onClick={toStep3Manual}>
               <span className="flex flex-row space-x-4 w-full items-center justify-center"><ArrowLeftIcon className="w-8 h-8" /> <span>Back</span></span>
             </Button>
-          </Link>
         </div>
 
         <div className={checkoutComplete ? 'space-y-4 flex flex-col items-center justify-center' : 'hidden'}>
@@ -186,4 +213,4 @@ const Step3Manual = () => {
     );
 };
 
-export default Step3Manual;
+export default Step4;

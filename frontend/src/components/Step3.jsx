@@ -10,36 +10,66 @@ const Step3 = () => {
   const navigate = useNavigate();
   const state = useLocation().state;
   const address = state.address.split(',')
-  const [expiry, setExpiry] = useState(state.expiry)
+  const [expiry, setExpiry] = useState(state.expiry || expiry)
   const [date, setDate] = useState(new Date(state.expiry))
-  const [phone, setPhone] = useState(state.phone)
-  const [choice, setChoice] = useState('')
+  const [choice, setChoice] = useState(state.choice)
+  const [license, setLicense] = useState(state.license)
+  console.log('Step3', state)
 
-  function handleToggle() {
-    setChoice('manual')
+  const handleClick = (chosen) => {
+    setChoice(state.choice || chosen)
   }
 
   const toStep2 = () => {
-    navigate('/step2', { state: { expiry: expiry, address: state.address, spotNumber: state.spotNumber, occupied: state.occupied, phone: phone } })
+    navigate('/step2', {
+      state: {
+        expiry: expiry,
+        address: state.address,
+        spotNumber: state.spotNumber,
+        occupied: state.occupied,
+        phone: state.phone,
+        sats: state.sats,
+        fiat: state.fiat,
+        choice: state.choice
+      }
+    })
   }
 
   const toStep3Manual = () => {
-    navigate('/step3-manual', { state: { expiry: expiry, address: state.address, spotNumber: state.spotNumber, occupied: state.occupied,  phone: phone } })
+    navigate('/step3-manual', {
+      state: {
+        expiry: expiry,
+        address: state.address,
+        spotNumber: state.spotNumber,
+        occupied: state.occupied,
+        phone: state.phone,
+        sats: state.sats,
+        fiat: state.fiat,
+        choice: choice
+      }
+    })
   }
 
   return (
     <Page>
-      <OrderDetails location1={`Parking Spot #${state.spotNumber}`} location2={address[0]} location3={address[1] + address[2]} expiry={date.getHours() + ":" + date.getMinutes()} phone={phone} />
+      <OrderDetails
+        location1={`Parking Spot #${state.spotNumber}`}
+        location2={address[0]}
+        location3={address[1] + address[2]}
+        expiry={date.getHours() + ":" + date.getMinutes()}
+        phone={state.phone}
+        license={state.license}
+      />
       <p className="text-4xl"> Enter your license plate number </p>
       <div className="flex flex-row space-x-4 w-full">
         <div className="basis-6/12">
-          <Toggle active={choice === 'scan'} onClick={() => { setChoice('scan') }}>
+          <Toggle active={choice === 'scan'} onClick={() => handleClick('scan')}>
             <ScanIcon className="w-12 h-12" />
             <span>Scan</span>
           </Toggle>
         </div>
         <div className="basis-6/12">
-          <Toggle active={choice === 'manual'} onClick={() => { setChoice('manual') }}>
+          <Toggle active={choice === 'manual'} onClick={() => handleClick('manual')}>
             <ScanIcon className="w-12 h-12" />
             <span>Type It In</span>
           </Toggle>

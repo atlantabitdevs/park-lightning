@@ -10,18 +10,42 @@ const ParkingUserLanding = () => {
   const navigate = useNavigate();
   const state = useLocation().state;
   const address = state.address.split(',')
-  console.log(state)
-
-  const [expiry, setExpiry] = useState(state.expiry)
-  const [phone, setPhone] = useState()
+  const [expiry, setExpiry] = useState(state.expiry || expiry)
   const [date, setDate] = useState(new Date(state.expiry))
+  const [phone, setPhone] = useState(state.phone)
+  const [license, setLicense] = useState(state.license)
+  console.log('Step2', state)
+
+  const handleChange = (e) => {
+    setPhone(state.phone || e.target.value)
+  }
 
   const toStep1 = () => {
-    navigate('/step1', { state: { expiry: expiry, address: state.address, spotNumber: state.spotNumber, occupied: state.occupied, phone: phone } })
+    navigate('/step1', {
+      state: {
+        expiry: expiry,
+        address: state.address,
+        spotNumber: state.spotNumber,
+        occupied: state.occupied,
+        phone: state.phone,
+        sats: state.sats,
+        fiat: state.fiat
+      }
+    })
   }
 
   const toStep3 = () => {
-    navigate('/step3', { state: { expiry: expiry, address: state.address, spotNumber: state.spotNumber, occupied: state.occupied, phone: phone } })
+    navigate('/step3', {
+      state: {
+        expiry: expiry,
+        address: state.address,
+        spotNumber: state.spotNumber,
+        occupied: state.occupied,
+        sats: state.sats,
+        fiat: state.fiat,
+        phone: phone 
+      }
+    })
   }
 
   return (
@@ -31,16 +55,16 @@ const ParkingUserLanding = () => {
         location2={address[0]}
         location3={address[1] + address[2]}
         expiry={date.getHours() + ":" + date.getMinutes()}
+        phone={state.phone}
+        license={state.license}
       />
       <p className="text-4xl">
         Enter your phone number
       </p>
 
-      <Input type="tel" placeholder="(404) 123-4567" onChange={event => setPhone(event.target.value)}/>
+      <Input value={phone} type="tel" placeholder="(404) 123-4567" onChange={handleChange}/>
 
-      <p className="text-sm text-neutral-500">
-        This is so we can send you your receipt and notifications if your parking is going to expire.
-      </p>
+      <p className="text-sm text-neutral-500">This is so we can send you your receipt and notifications if your parking is going to expire.</p>
 
       <div className="flex flex-row space-x-4">
         <Button size="large" importance="secondary" onClick={toStep1}>

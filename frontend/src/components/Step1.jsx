@@ -10,15 +10,16 @@ const ParkingUserLanding = () => {
   const address = state.address.split(',')
 
   const [timeIncrements, setTimeIncrements] = useState(1)
-  // const [expiry, setExpiry] = useState(new Date())
   const [btcPrice, setBtcPrice] = useState({})
+  const [sats, setSats] = useState()
+  const [fiat, setFiat] = useState()
 
   const timeUnit = 30 // minutes
   const timeMax = 1440 // 24 * 30 minutes
   const timeMin = 30
   const price = 2
   const [expiry, setExpiry] = useState(new Date())
-  // const [expiry, setExpiry] = useState(new Date() + (timeUnit * timeIncrements))
+  console.log('Step1', state)
   
   useEffect(async () => {
     const data = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json', {
@@ -31,16 +32,29 @@ const ParkingUserLanding = () => {
         btcPriceData.bpi.USD.rate.replace(',', '')
       )
     )
+
+    setFiat(timeIncrements * price)
+    setSats((((timeIncrements * price) / btcPrice) * 100000000).toFixed(0))
   })
 
   const toStep2 = () => {
-    navigate('/step2', { state: { expiry: expiry.getTime(), address: state.address, spotNumber: state.spotNumber, occupied: state.occupied } })
+    navigate('/step2', {
+      state: {
+        expiry: expiry.getTime(),
+        address: state.address,
+        spotNumber: state.spotNumber,
+        occupied: state.occupied,
+        sats: sats,
+        fiat: fiat
+      }
+    })
   }
 
   const increaseTime = () => {
     if ((timeIncrements * timeUnit) < timeMax) {
       setTimeIncrements(timeIncrements + 1)
-      // buildExpiry()
+      setFiat(timeIncrements * price)
+      setSats((((timeIncrements * price) / btcPrice) * 100000000).toFixed(0))
     }
   }
 
@@ -50,15 +64,13 @@ const ParkingUserLanding = () => {
       console.log('greater than time min')
       setTimeIncrements(timeIncrements - 1)
       console.log('timeIncrements is ' + timeIncrements)
-      // buildExpiry()
-      
+      setFiat(timeIncrements * price)
+      setSats((((timeIncrements * price) / btcPrice) * 100000000).toFixed(0))
     }
   }
 
   const buildExpiry = () => {
     if(timeIncrements && timeUnit) {
-      // let newExpiry = new Date()
-      // console.log(newExpiry)
       let interval = (timeIncrements * timeUnit * 60 * 1000);
       console.log(interval)
       console.log(expiry)
@@ -67,10 +79,10 @@ const ParkingUserLanding = () => {
       setExpiry(newExpiry)
     }
   }
+
   useEffect(()=>{
     buildExpiry()
   }, [timeIncrements])
-
 
   return (
     <Page>
@@ -93,8 +105,8 @@ const ParkingUserLanding = () => {
           </div>
           <div className="space-y-1">
             <h3 className="font-bold text-xl">Price</h3>
-            <p className="text-4xl">${timeIncrements * price}</p>
-            <p className="text-2xl">{(((timeIncrements * price) / btcPrice) * 100000000).toFixed(0)} sats</p>
+            <p className="text-4xl">${fiat}</p>
+            <p className="text-2xl">{sats} sats</p>
           </div>
         </div>
         <div className="flex flex-col space-y-8 basis-4/12">
