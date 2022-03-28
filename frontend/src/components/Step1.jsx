@@ -14,7 +14,7 @@ const ParkingUserLanding = () => {
     const price = 2
   const location = useLocation()
     
-  console.log(location.state)
+  // console.log(location.state)
 
   const navigate = useNavigate();
 
