@@ -13,7 +13,14 @@ const Step3Manual = () => {
   const [expiry, setExpiry] = useState(state.expiry)
   const [date, setDate] = useState(new Date(state.expiry))
   const [phone, setPhone] = useState(state.phone)
-  const [choice, setChoice] = useState('')
+  const [choice, setChoice] = useState(state.choice)
+  const [license, setLicense] = useState(state.license)
+
+  console.log('Step3Manual', state)
+
+  const handleChange = (e) => {
+    setLicense(state.license || e.target.value)
+  }
 
   const toStep3 = () => {
     navigate('/step3', {
@@ -22,7 +29,11 @@ const Step3Manual = () => {
         address: state.address,
         spotNumber: state.spotNumber,
         occupied: state.occupied,
-        phone: phone
+        sats: state.sats,
+        fiat: state.fiat,
+        phone: state.phone,
+        choice: state.choice,
+        license: state.license
       }
     })
   }
@@ -34,8 +45,11 @@ const Step3Manual = () => {
         address: state.address,
         spotNumber: state.spotNumber,
         occupied: state.occupied,
-        phone: phone,
-        choice: choice
+        sats: state.sats,
+        fiat: state.fiat,
+        phone: state.phone,
+        choice: state.choice,
+        license: license
       }
     })
   }
@@ -48,12 +62,13 @@ const Step3Manual = () => {
         location3={address[1] + address[2]}
         expiry={date.getHours() + ":" + date.getMinutes()}
         phone={phone}
+        license={state.license}
       />
       <p className="text-4xl">
         Enter your license plate
       </p>
 
-      <Input type="text" placeholder="ABC 123" />
+      <Input valie={license} type="text" placeholder="ABCD123" onChange={handleChange}/>
 
       <div className="flex flex-row space-x-4">
         <Button size="large" importance="secondary" onClick={toStep3}>
