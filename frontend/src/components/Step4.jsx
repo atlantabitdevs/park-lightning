@@ -94,7 +94,9 @@ const Step3Manual = () => {
   function share() {
     if (navigator.share) {
       navigator.share({
-        url: 'bitcoin:bc1qylh3u67j673h6y6alv70m0pl2yz53tzhvxgg7u?amount=0.00001&label=sbddesign%3A%20For%20lunch%20Tuesday&message=For%20lunch%20Tuesday&lightning=' + invoice
+        title: 'Arion Invoice',
+        url: 'bitcoin:bc1qylh3u67j673h6y6alv70m0pl2yz53tzhvxgg7u?amount=0.00001&label=sbddesign%3A%20For%20lunch%20Tuesday&message=For%20lunch%20Tuesday&lightning=' + invoice,
+        invoice: invoice
       }).then(() => {
         console.log('Thanks for sharing!');
       })
