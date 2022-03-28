@@ -2,20 +2,29 @@ import {useEffect, useState} from 'react';
 import { ArrowRightIcon } from '@bitcoin-design/bitcoin-icons-react/filled';
 import Page from './Page';
 import Button from './Button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { GetSpotDetails } from '../serviceRequests/spot'
-const uuid = 'da1c0d1b-1ecf-4fe0-9acd-dc3d49640f8f'
 
 const ParkingUserLanding = () => {
     const navigate = useNavigate();
     const [spotDetails, setSpotDetails] = useState({ address: '', spotNumber: '', occupied: '' });
+    const [uuid, setUuid] = useState('da1c0d1b-1ecf-4fe0-9acd-dc3d49640f8f');
 
+    
+    
+    const [searchParams] = useSearchParams();
+    
+    
     const toStep1 = () => {
         navigate('/step1', { state: { address: spotDetails.address, spotNumber: spotDetails.spotNumber, occupied: spotDetails.occupied } });
     }
     
     useEffect(()=>{
-      if(!spotDetails.spotNumber) {
+      if(searchParams.get('spotId')) {
+        console.log(searchParams.get('spotId'))
+        setUuid(searchParams.get('spotId'))
+      }
+      if(!spotDetails.spotNumber && uuid) {
         GetSpotDetails(uuid)
           .then(spotDetails => {
             setSpotDetails(spotDetails.message)
@@ -24,7 +33,7 @@ const ParkingUserLanding = () => {
             console.log(err);
           })
       }
-    }, [spotDetails])
+    }, [spotDetails, uuid])
 
     return (
         <Page>
