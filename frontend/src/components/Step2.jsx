@@ -1,55 +1,56 @@
 import OrderDetails from './OrderDetails';
-import Header from './Header';
-import DurationSelection from './DurationSelection';
-import {ArrowLeftIcon, ArrowRightIcon, MinusIcon, PlusIcon} from '@bitcoin-design/bitcoin-icons-react/filled';
+import { ArrowLeftIcon, ArrowRightIcon } from '@bitcoin-design/bitcoin-icons-react/filled';
 import Page from './Page';
 import Button from './Button';
-import {Link, useLocation} from 'react-router-dom';
-import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import {useState} from 'react';
 import Input from './Input';
-import { useSearchParams, useNavigate } from 'react-router-dom';
 
-const ParkingUserLanding = (props) => {
-  // const [searchParams] = useSearchParams();
-  const location = useLocation()
-  const [location1, setLocation1] = React.useState('Parking Spot 7')
-  const [location2, setLocation2] = React.useState('123 Euclid Ave')
-  // const [expiry, setExpiry] = React.useState(searchParams.get('expiry'))
-  // const [date, setDate] = React.useState(new Date(searchParams.get('expiry')/1000))
-  const [expiry, setExpiry] = React.useState(location.state.expiry)
-  const [date, setDate] = React.useState(new Date(location.state.expiry))
-  
+const ParkingUserLanding = () => {
+  const navigate = useNavigate();
+  const state = useLocation().state;
+  const address = state.address.split(',')
+  console.log(state)
 
+  const [expiry, setExpiry] = useState(state.expiry)
+  const [phone, setPhone] = useState()
+  const [date, setDate] = useState(new Date(state.expiry))
 
-  
+  const toStep1 = () => {
+    navigate('/step1', { state: { expiry: expiry, address: state.address, spotNumber: state.spotNumber, occupied: state.occupied, phone: phone } })
+  }
+
+  const toStep3 = () => {
+    navigate('/step3', { state: { expiry: expiry, address: state.address, spotNumber: state.spotNumber, occupied: state.occupied, phone: phone } })
+  }
 
   return (
-      <Page>
-        <OrderDetails location1={location1} location2={location2} expiry={date.getHours() + ":" + date.getMinutes()} />
-        <p className="text-4xl">
-          Enter your phone number
-        </p>
-        
-        <Input type="tel" placeholder="(404) 123-4567" />
-        
-        <p className="text-sm text-neutral-500">
-          This is so we can send you your receipt and notifications if your parking is going to expire.
-        </p>
-        
-        <div className="flex flex-row space-x-4">
-          <Link to="/step1">
-            <Button size="large" importance="secondary" href="/test">
-              <span className="sr-only">Back</span> <ArrowLeftIcon className="w-8 h-8" />
-            </Button>
-          </Link>
-          <Link to="/step3">
-            <Button size="large" importance="primary" href="/test">
-              <span className="flex flex-row space-x-4"><span>Step 3</span> <ArrowRightIcon className="w-8 h-8" /></span>
-            </Button>
-          </Link>
-        </div>
-      </Page>  
-    );
+    <Page>
+      <OrderDetails
+        location1={`Parking Spot #${state.spotNumber}`}
+        location2={address[0]} location3={address[1] + address[2]}
+        expiry={date.getHours() + ":" + date.getMinutes()}
+      />
+      <p className="text-4xl">
+        Enter your phone number
+      </p>
+
+      <Input type="tel" placeholder="(404) 123-4567" onChange={event => setPhone(event.target.value)}/>
+
+      <p className="text-sm text-neutral-500">
+        This is so we can send you your receipt and notifications if your parking is going to expire.
+      </p>
+
+      <div className="flex flex-row space-x-4">
+        <Button size="large" importance="secondary" onClick={toStep1}>
+          <span className="sr-only">Back</span> <ArrowLeftIcon className="w-8 h-8" />
+        </Button>
+        <Button size="large" importance="primary" onClick={toStep3}>
+          <span className="flex flex-row space-x-4"><span>Step 3</span> <ArrowRightIcon className="w-8 h-8" /></span>
+        </Button>
+      </div>
+    </Page>
+  );
 };
 
 export default ParkingUserLanding;

@@ -12,6 +12,7 @@ const uuid = 'da1c0d1b-1ecf-4fe0-9acd-dc3d49640f8f'
 const ParkingUserLanding = () => {
     const navigate = useNavigate();
     const [spotDetails, setSpotDetails] = useState({ address: '', spotNumber: '', occupied: '' });
+
     GetSpotDetails(uuid)
         .then(spotDetails => {
             setSpotDetails(spotDetails.message)
@@ -19,9 +20,9 @@ const ParkingUserLanding = () => {
         .catch(err => {
             console.log(err);
         })
-    
+
     const toStep1 = () => {
-        navigate('/step1', { state: spotDetails });
+        navigate('/step1', { state: { spotDetails: spotDetails } });
     }
 
     return (
@@ -35,7 +36,7 @@ const ParkingUserLanding = () => {
             <p className="text-3xl">
                 Welcome to Arion.<br />Pay for your parking with bitcoin in 4 easy steps.
             </p>
-            <Button size="large" importance="primary" href="/test" onClick={toStep1}>
+            <Button size="large" importance="primary" onClick={toStep1}>
                 <span className="flex flex-row space-x-4"><span>Step 1</span> <ArrowRightIcon className="w-8 h-8" /></span>
             </Button>
         </Page>
