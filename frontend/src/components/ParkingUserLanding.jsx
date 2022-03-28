@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { ArrowRightIcon } from '@bitcoin-design/bitcoin-icons-react/filled';
 import Page from './Page';
 import Button from './Button';
@@ -10,17 +10,21 @@ const ParkingUserLanding = () => {
     const navigate = useNavigate();
     const [spotDetails, setSpotDetails] = useState({ address: '', spotNumber: '', occupied: '' });
 
-    GetSpotDetails(uuid)
-        .then(spotDetails => {
-            setSpotDetails(spotDetails.message)
-        })
-        .catch(err => {
-            console.log(err);
-        })
-
     const toStep1 = () => {
         navigate('/step1', { state: { address: spotDetails.address, spotNumber: spotDetails.spotNumber, occupied: spotDetails.occupied } });
     }
+    
+    useEffect(()=>{
+      if(!spotDetails.spotNumber) {
+        GetSpotDetails(uuid)
+          .then(spotDetails => {
+            setSpotDetails(spotDetails.message)
+          })
+          .catch(err => {
+            console.log(err);
+          })
+      }
+    }, [spotDetails])
 
     return (
         <Page>
