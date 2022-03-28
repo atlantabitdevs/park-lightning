@@ -22,7 +22,11 @@ const ParkingUserLanding = () => {
         })
 
     const toStep1 = () => {
+<<<<<<< HEAD
         navigate('/step1', { state: { spotDetails: spotDetails } });
+=======
+        navigate('/step1', { state: {spotDetails} });
+>>>>>>> cfe40edab8034ce0b66ab4b379bdd5e862ad049c
     }
 
     return (
