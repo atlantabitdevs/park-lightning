@@ -168,7 +168,7 @@ const Step4 = () => {
           location1={`Parking Spot #${state.spotNumber}`}
           location2={address[0]}
           location3={address[1] + address[2]}
-          expiry={date.getHours() + ":" + date.getMinutes()}
+          expiry={(date.getHours() < 10 ? '0' : '') + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes()}
           phone={state.phone}
           license={state.license}
         />
