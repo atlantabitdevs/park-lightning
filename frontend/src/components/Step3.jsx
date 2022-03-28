@@ -1,8 +1,8 @@
 import OrderDetails from './OrderDetails';
-import { ArrowLeftIcon, ArrowRightIcon, ScanIcon } from '@bitcoin-design/bitcoin-icons-react/filled';
+import {ArrowLeftIcon, ArrowRightIcon, ScanIcon} from '@bitcoin-design/bitcoin-icons-react/filled';
 import Page from './Page';
 import Button from './Button';
-import { useNavigate, useLocation } from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
 import {useState} from 'react';
 import Toggle from './Toggle';
 
@@ -20,16 +20,39 @@ const Step3 = () => {
   }
 
   const toStep2 = () => {
-    navigate('/step2', { state: { expiry: expiry, address: state.address, spotNumber: state.spotNumber, occupied: state.occupied, phone: phone } })
+    navigate('/step2', {
+      state: {
+        expiry: expiry,
+        address: state.address,
+        spotNumber: state.spotNumber,
+        occupied: state.occupied,
+        phone: phone
+      }
+    })
   }
 
   const toStep3Manual = () => {
-    navigate('/step3-manual', { state: { expiry: expiry, address: state.address, spotNumber: state.spotNumber, occupied: state.occupied,  phone: phone } })
+    navigate('/step3-manual', {
+      state: {
+        expiry: expiry,
+        address: state.address,
+        spotNumber: state.spotNumber,
+        occupied: state.occupied,
+        phone: phone,
+        choice: choice
+      }
+    })
   }
 
   return (
     <Page>
-      <OrderDetails location1={`Parking Spot #${state.spotNumber}`} location2={address[0]} location3={address[1] + address[2]} expiry={date.getHours() + ":" + date.getMinutes()} phone={phone} />
+      <OrderDetails
+        location1={`Parking Spot #${state.spotNumber}`}
+        location2={address[0]}
+        location3={address[1] + address[2]}
+        expiry={date.getHours() + ":" + date.getMinutes()}
+        phone={phone}
+      />
       <p className="text-4xl"> Enter your license plate number </p>
       <div className="flex flex-row space-x-4 w-full">
         <div className="basis-6/12">
