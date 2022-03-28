@@ -6,8 +6,10 @@ import {
 } from '@bitcoin-design/bitcoin-icons-react/filled';
 import Page from './Page';
 import Button from './Button';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import React from 'react';
+import {ThumbDownIcon, ThumbUpIcon} from '@heroicons/react/solid';
 
 const Step4 = () => {
   const navigate = useNavigate();
@@ -112,6 +114,29 @@ const Step4 = () => {
       });
   }
   
+  function share() {
+    if (navigator.share) {
+      navigator.share({
+        title: 'Arion Invoice',
+        url: 'bitcoin:bc1qylh3u67j673h6y6alv70m0pl2yz53tzhvxgg7u?amount=0.00001&label=sbddesign%3A%20For%20lunch%20Tuesday&message=For%20lunch%20Tuesday&lightning=' + invoice,
+        invoice: invoice
+      }).then(() => {
+        console.log('Thanks for sharing!');
+      })
+        .catch(console.error);
+    }
+    else {
+      console.log('No navigator sharing API')
+    }
+  }
+
+  function copyInvoice() {
+    navigator.clipboard.writeText(invoice).then(
+      ()=>{ console.log("Copied") },
+      err=>{ console.log("An error occurred copying") }
+    )
+  }
+  
   useEffect(()=>{
     if(!invoice) {
       getInvoice(fiat, license, uuid)
@@ -131,7 +156,15 @@ const Step4 = () => {
   
     return (
       <Page>
-         <OrderDetails
+        <div className={checkoutComplete ? 'space-y-4' : 'hidden'}>
+          <p className="text-4xl">Your parking is paid.</p>
+          
+          <p className="text-xl">
+            We’ll text you a receipt, and notify you when your parking is nearing expiration.
+          </p>
+        </div>
+
+        <OrderDetails
           location1={`Parking Spot #${state.spotNumber}`}
           location2={address[0]}
           location3={address[1] + address[2]}
@@ -140,7 +173,7 @@ const Step4 = () => {
           license={state.license}
         />
         
-        <div className="space-y-2">
+        <div className={checkoutComplete ? "hidden" : "space-y-2"}>
           <p className="text-4xl">
             Please pay
           </p>
@@ -151,21 +184,30 @@ const Step4 = () => {
             {sats} sats
           </p>
         </div>
-        
-        <p className={checkoutComplete ? 'hidden' : ''}>{invoice}</p>
 
-        <p className={!checkoutComplete ? 'hidden' : ''}>Paid invoice</p>
-        
-        <div className="flex flex-col space-y-4">
-          <Button size="large" importance="primary">
+        <div className={checkoutComplete ? "hidden" : "flex flex-col space-y-4"}>
+          <Button size="large" importance="primary" onClick={share}>
             <span className="flex flex-row space-x-4"><span>Open Wallet</span> <WalletIcon className="w-8 h-8" /></span>
           </Button>
-          <Button size="large" importance="primary">
+          <Button size="large" importance="primary" onClick={copyInvoice}>
             <span className="flex flex-row space-x-4"><span>Copy Invoice</span> <CopyIcon className="w-8 h-8" /></span>
           </Button>
             <Button size="minimal" importance="secondary" onClick={toStep3Manual}>
               <span className="flex flex-row space-x-4 w-full items-center justify-center"><ArrowLeftIcon className="w-8 h-8" /> <span>Back</span></span>
             </Button>
+        </div>
+
+        <div className={checkoutComplete ? 'space-y-4 flex flex-col items-center justify-center' : 'hidden'}>
+          <p className="text-4xl">How was your parking experience?</p>
+
+          <div className="flex flex-row space-x-4">
+            <Button size="large" importance="secondary" onClick={()=>{alert('Feedback received!')}}>
+              <span className="sr-only">Bad</span> <ThumbDownIcon className="w-8 h-8" />
+            </Button>
+            <Button size="large" importance="primary" onClick={()=>{alert('Feedback received!')}}>
+              <span className="sr-only">Good</span> <ThumbUpIcon className="w-8 h-8" />
+            </Button>
+          </div>
         </div>
       </Page>  
     );
