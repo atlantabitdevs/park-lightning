@@ -1,11 +1,8 @@
-import OrderDetails from './OrderDetails';
-import Header from './Header';
-import DurationSelection from './DurationSelection';
 import { useState } from 'react';
 import { ArrowRightIcon } from '@bitcoin-design/bitcoin-icons-react/filled';
 import Page from './Page';
 import Button from './Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { GetSpotDetails } from '../serviceRequests/spot'
 const uuid = 'da1c0d1b-1ecf-4fe0-9acd-dc3d49640f8f'
 
@@ -22,7 +19,7 @@ const ParkingUserLanding = () => {
         })
 
     const toStep1 = () => {
-        navigate('/step1', { state: { spotDetails: spotDetails } });
+        navigate('/step1', { state: { address: spotDetails.address, spotNumber: spotDetails.spotNumber, occupied: spotDetails.occupied } });
     }
 
     return (
